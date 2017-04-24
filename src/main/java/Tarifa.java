@@ -9,7 +9,7 @@ public class Tarifa {
 		this.precio = precio;
 	}
 
-	// QUIZA RETOCAR CON AMBAS TARIFAS
+
 	public float getPrecio() {
 		return precio;
 	}

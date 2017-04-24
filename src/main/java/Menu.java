@@ -3,7 +3,6 @@ import java.text.ParseException;
 import java.util.Scanner;
 
 public class Menu {
-    // hicfww
 
 	public static void main (String [] args) throws IOException, ParseException, FechaIncorrecta, ClassNotFoundException {
         int opcion;
