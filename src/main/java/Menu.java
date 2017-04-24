@@ -1,13 +1,20 @@
-import es.uji.www.GeneradorDatosINE;
-
+import java.io.IOException;
+import java.text.ParseException;
 import java.util.Scanner;
 
 public class Menu {
 
-	public static void main(String [] args) {
+	public static void main (String [] args) throws IOException, ParseException, FechaIncorrecta, ClassNotFoundException {
         int opcion;
+        String fichero;
+        AdministrarApp app = new AdministrarApp();  //Para cargar y guardar las listas
         boolean fin = false;
         Scanner sc = new Scanner(System.in);
+
+        //CARGAMOS LAS LISTAS ANTES DE COMENZAR
+        System.out.println("Bienvenido, inserte por favor el nombre del fichero para cargar los datos: ");
+        fichero = sc.next();
+        app.cargar(fichero);
 
         // Mientras la opción elegida no sea 0, se ejecuta el menú principal
         while (!fin) {
@@ -32,11 +39,17 @@ public class Menu {
                     break;
             }
         }
+
+        //ANTES DE SALIR GUARDAMOS LAS LISTAS EN UN ARCHIVO
+        System.out.println("Antes de cerrar, indique el nombre del fichero donde quiere almacenar los datos: ");
+        fichero = sc.next();
+        app.guardar(fichero);
+
         sc.close();
     }
 
-	public static void menuClientes(){
-	    int opcion;
+	public static void menuClientes() throws ParseException {
+	    int option;
 	    boolean fin = false;
 	    AdministrarCliente admClien = new AdministrarCliente();
 
@@ -47,9 +60,9 @@ public class Menu {
             opcionesClientes();
 
             System.out.print("Elija la opción que desea (0-5): ");
-            opcion = sc.nextInt();
+            option = sc.nextInt();
 
-            switch (opcion) {
+            switch (option) {
                 case 0: //volver al menu principal
                     fin = true;
                     break;
@@ -75,8 +88,8 @@ public class Menu {
         sc.close();
     }
 
-    public static void menuLlamadas(){
-        int opcion;
+    public static void menuLlamadas() throws ParseException {
+        int option;
         boolean fin = false;
         AdministrarLlamada admLlam = new AdministrarLlamada();
 
@@ -87,9 +100,9 @@ public class Menu {
             opcionesLlamadas();
 
             System.out.print("Elija la opción que desea (0-2): ");
-            opcion = sc.nextInt();
+            option = sc.nextInt();
 
-            switch (opcion) {
+            switch (option) {
                 case 0: //volver al menu principal
                     fin = true;
                     break;
@@ -106,8 +119,8 @@ public class Menu {
         sc.close();
     }
 
-    public static void menuFacturas(){
-        int opcion;
+    public static void menuFacturas() throws ParseException, FechaIncorrecta {
+        int option;
         boolean fin = false;
         AdministrarFactura admFac = new AdministrarFactura();
 
@@ -118,9 +131,9 @@ public class Menu {
             opcionesFacturas();
 
             System.out.print("Elija la opción que desea (0-3): ");
-            opcion = sc.nextInt();
+            option = sc.nextInt();
 
-            switch (opcion) {
+            switch (option) {
                 case 0: //volver al menu principal
                     fin = true;
                     break;

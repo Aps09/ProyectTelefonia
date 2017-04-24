@@ -1,21 +1,16 @@
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Scanner;
+import java.time.LocalDateTime;
 
-public class Llamada {
+public class Llamada implements Fecha{
 
 	// Atributos
 	
 	private int tlfnDestino;
-	private Date fechaHora;
+	private LocalDateTime fechaHora;
 	private int duracion;
 	private int NIF;
 	// Constructor
 
-	public Llamada(int tlfnDestino, Date fechaHora, int duracion, int nif){
+	public Llamada(int tlfnDestino, LocalDateTime fechaHora, int duracion, int nif){
 		
 		this.tlfnDestino = tlfnDestino;
 		this.fechaHora = fechaHora;
@@ -33,11 +28,11 @@ public class Llamada {
 		this.tlfnDestino = tlfnDestino;
 	}
 
-	public Date getFechaHora() {
+	public LocalDateTime getFechaHora() {
 		return fechaHora;
 	}
 
-	public void setFechaHora(Date fechaHora) {
+	public void setFechaHora(LocalDateTime fechaHora) {
 		this.fechaHora = fechaHora;
 	}
 
@@ -57,7 +52,7 @@ public class Llamada {
 		NIF = nIF;
 	}
 
-	public Date getFecha(){
+	public LocalDateTime getFecha(){
 		return fechaHora;
 	}
 }

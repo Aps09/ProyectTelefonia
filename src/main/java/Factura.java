@@ -1,18 +1,13 @@
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Scanner;
+import java.time.LocalDateTime;
 
-public class Factura {
+public class Factura implements Fecha{
 	
 	// Atributos
 	
 	private int codigo;
 	private Tarifa tarifa;
-	private Date fechaEmision;
-	private Date[] periodoFactura = new Date[2];
+	private LocalDateTime fechaEmision;
+	private LocalDateTime[] periodoFactura = new LocalDateTime[2];
 	private int NIF;
 	private float importe;
 	
@@ -26,7 +21,7 @@ public class Factura {
 		this.NIF = 0;
 	}
 
-	public Factura(int cod, Tarifa tarifa, Date fechaEmision, Date[] periodoFactura, float importe, int NIF){
+	public Factura(int cod, Tarifa tarifa, LocalDateTime fechaEmision, LocalDateTime[] periodoFactura, float importe, int NIF){
 		this.codigo = cod;
 		this.tarifa = tarifa;
 		this.fechaEmision = fechaEmision;
@@ -35,7 +30,7 @@ public class Factura {
 		this.NIF = NIF;
 	}
 	
-	public Date getFecha(){
+	public LocalDateTime getFecha(){
 		return fechaEmision;
 	}
 	
@@ -55,19 +50,19 @@ public class Factura {
 		this.tarifa.setPrecio(nuevaTarifa);
 	}
 
-	public Date getFechaEmision() {
+	public LocalDateTime getFechaEmision() {
 		return fechaEmision;
 	}
 
-	public void setFechaEmision(Date fechaEmision) {
+	public void setFechaEmision(LocalDateTime fechaEmision) {
 		this.fechaEmision = fechaEmision;
 	}
 
-	public Date[] getPeriodoFactura() {
+	public LocalDateTime[] getPeriodoFactura() {
 		return periodoFactura;
 	}
 
-	public void setPeriodoFactura(Date fechaInit, Date fechaFin) {
+	public void setPeriodoFactura(LocalDateTime fechaInit, LocalDateTime fechaFin) {
 	    this.periodoFactura[0] = fechaInit;
 	    this.periodoFactura[1] = fechaFin;
 	}

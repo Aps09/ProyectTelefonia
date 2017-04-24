@@ -1,14 +1,10 @@
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Collection;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
+import java.util.Collection;
 
-public class AdministrarLlamada {
-	
-	private ArrayList<Llamada> listaLlamada = new ArrayList<Llamada>();
+public class AdministrarLlamada extends AdministrarApp{
 	
 	// Metodos
 	
@@ -21,8 +17,7 @@ public class AdministrarLlamada {
 			
 			System.out.println("Introduzca ahora la fecha de la llamada: Ex: Monday 12 December 2013");
 		    String dateString = sc.next();
-		    DateFormat formatter = new SimpleDateFormat("EEEE dd MMM yyyy");		// Ejemplo: Monday 21 April 2016
-		    Date date = formatter.parse(dateString);
+            LocalDateTime date = LocalDateTime.parse(dateString, DateTimeFormatter.ofPattern("EEEE dd MMM yyyy"));
 		    
 		    System.out.println("Introduzca la duracion de la llamada en minutos:");
 		    int duracion = sc.nextInt();
@@ -35,7 +30,18 @@ public class AdministrarLlamada {
 			//Crear la nueva llamada
 			Llamada e = new Llamada(llamada, date, duracion, NIF);
 			listaLlamada.add(e);
-		}	
+		}
+
+		public void listarLlamadasFecha(LocalDateTime[] periodoFecha){
+			Collection<Llamada> lista = getFecha(listaLlamada,periodoFecha[0],periodoFecha[1]);
+
+			System.out.println("Lista de las llamadas en el periodo seleccionado:\n************************************************");
+			System.out.println("NIF\tFecha\tDuracion\tTelefono Destinatario");
+
+			for(Llamada e : lista){
+				System.out.println(e.getNIF()+" "+e.getFecha()+" "+e.getDuracion()+" "+e.getTlfnDestino());
+			}
+		}
 		
 		public void listarLlamadas(){
 			System.out.println("Lista de todas las llamadas:\n************************************************");
@@ -55,15 +61,14 @@ public class AdministrarLlamada {
 			}
 		}
 
-         public <T> Collection <T> genericoFecha(Collection<T> coleccion, Date inicio, Date fin){
+         public <T extends Fecha> Collection <T> getFecha(Collection<T> coleccion, LocalDateTime inicio, LocalDateTime fin){
 
             Collection <T> resultado = null;
 
             for(T objeto : coleccion){
-                  if (objeto.getFecha().compareTo(inicio)>=0 && objeto.getFecha().compareTo(fin)<=0)
-                      resultado.add(objeto);
+                if (objeto.getFecha().compareTo(inicio)>=0 && objeto.getFecha().compareTo(fin)<=0)
+                    resultado.add(objeto);
             }
             return resultado;
-         }
-
+        }
 }

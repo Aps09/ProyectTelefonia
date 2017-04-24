@@ -1,8 +1,6 @@
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Scanner;
+import java.time.LocalDateTime;
 
-public class Cliente{
+public class Cliente implements Fecha{
 	
 	/*Atributos*/
 	
@@ -10,7 +8,7 @@ public class Cliente{
 	private String NIF;
 	private Direccion direccion;
 	private String correo;
-	private Date fechaAlta;
+	private LocalDateTime fechaAlta;
 	private Tarifa tarifa;
 
 	/*Constructor*/
@@ -23,7 +21,7 @@ public class Cliente{
 	    this.tarifa=null;
     }
 
-	public Cliente (String nom, String nif, Direccion direc, String correu, Date dataAlta, Tarifa tarifa){
+	public Cliente (String nom, String nif, Direccion direc, String correu, LocalDateTime dataAlta, Tarifa tarifa){
 		this.nombre = nom;
 		this.NIF = nif;
 		this.direccion = direc;
@@ -32,7 +30,7 @@ public class Cliente{
 		this.tarifa = tarifa;
 	}
 	
-	public Date getFecha(){
+	public LocalDateTime getFecha(){
 		return fechaAlta;
 	}
 
@@ -54,7 +52,7 @@ public class Cliente{
         this.correo = correo;
     }
 
-    public void setFechaAlta(Date fechaAlta) {
+    public void setFechaAlta(LocalDateTime fechaAlta) {
         this.fechaAlta = fechaAlta;
     }
 
@@ -79,10 +77,6 @@ public class Cliente{
 
     public String getCorreo() {
         return correo;
-    }
-
-    public Date getFechaAlta() {
-        return fechaAlta;
     }
 
     public float getTarifa() {
